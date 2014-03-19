@@ -21,12 +21,12 @@ disk_without_fs = disks - disks_with_fs
 execute "format target disk" do
 	# command "echo #{@@disk_without_fs} > /tmp/target.log"
 	command "mkfs -t ext3 /dev/#{disk_without_fs}1"
-	not_if disk_without_fs.to_s.size = 2
+	not_if disk_without_fs.to_s.length = 2
 end
 
 execute "create temporary mount point" do
 	command "mkdir /#{data_part}_temp_mountpoint"
-	not_if disk_without_fs.to_s.size = 2
+	not_if disk_without_fs.to_s.length = 2
 end
 
 #add temporary mount point to fstab
