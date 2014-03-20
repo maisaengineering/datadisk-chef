@@ -1,5 +1,9 @@
 datadisk Cookbook
 =================
+
+# THIS IS STILL PRE-ALPHA CODE, NOT EXPECTED TO WORK
+
+
 TODO: Enter the cookbook description here.
 
 e.g.
