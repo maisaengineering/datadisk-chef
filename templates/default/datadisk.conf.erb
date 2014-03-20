@@ -4,13 +4,13 @@ stop on runlevel [!2345]
 task
 
 script
-  mount #{data_part_temp}
-  rsync -aH #{data_part} #{data_part_temp}
-  mv #{data_part} #{data_part}_old
-  mkdir #{data_part}
-  umount #{data_part_temp}
-  sed -i -e '|/#{data_part}_temp_mountpoint|/#{data_part}|' /etc/fstab
-  mount #{data_part}
+  mount <% @data_part_temp -%>
+  rsync -aH <% @data_part -%> <% @data_part_temp -%>
+  mv <% @data_part -%> <% @data_part -%>_old
+  mkdir <% @data_part -%>
+  umount <% @data_part_temp -%>
+  sed -i -e '|/<% @data_part -%>_temp_mountpoint|/<% @data_part -%>|' /etc/fstab
+  mount <% @data_part -%>
 # harakiri
   rm -f /etc/init/datadisk.conf
  end script
