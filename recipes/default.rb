@@ -52,7 +52,7 @@ template "/etc/init/datadisk.conf" do
   owner "root"
   action :create
   only_if { ::File.directory?("#{data_part}_temp_mountpoint") }
-  variables :data_part => data_part
+  variables :data_part => node['datadisk']['datapart']
 end
 
 execute "reboot" do
