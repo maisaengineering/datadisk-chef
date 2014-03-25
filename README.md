@@ -26,7 +26,7 @@ e.g.
   </tr>
   <tr>
     <td><tt>['datadisk']['datapart']</tt></td>
-    <td>Boolean</td>
+    <td>string</td>
     <td>the target mountpoint e.g. /data or /opt</td>
     <td><tt>/data</tt></td>
   </tr>
