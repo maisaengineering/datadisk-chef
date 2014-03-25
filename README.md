@@ -30,12 +30,6 @@ e.g.
     <td>the target mountpoint e.g. /data or /opt</td>
     <td><tt>/data</tt></td>
   </tr>
-    <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
   <tr>
     <td><tt>['datadisk']['doitlive']</tt></td>
     <td>Boolean</td>
