@@ -14,8 +14,6 @@ Requirements
 
 Attributes
 ----------
-
-e.g.
 #### datadisk::default
 <table>
   <tr>
