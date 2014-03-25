@@ -29,9 +29,9 @@ execute "create temporary mount point" do
         not_if { disk_without_fs.empty? }
 end
 
-#Debugging goes here
-execute "echo #{data_part}_temp_mountpoint > /tmp/target.log" do
-       only_if { ::File.directory?("#{data_part}_temp_mountpoint/") }
+#Create datadir if not present
+execute "mkdir #{data_part}" do
+       not_if { ::File.directory?("#{data_part}") }
 end
 
 #add temporary mount point to fstab
