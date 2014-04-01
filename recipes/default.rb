@@ -40,7 +40,7 @@ ruby_block "add temp mountpoint to /etc/fstab" do
     block do
         file = Chef::Util::FileEdit.new("/etc/fstab")
         file.insert_line_if_no_match("#{data_part}_temp_mountpoint",
-                "/dev/#{disk_without_fs.join}1  #{data_part}_temp_mountpoint    ext3    defaults        1 1"
+                "/dev/#{disk_without_fs.join}1  #{data_part}_temp_mountpoint    ext3    defaults,nofail    1 1"
         )
         file.write_file
         end

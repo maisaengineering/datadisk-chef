@@ -1,9 +1,11 @@
-start on local-filesystems
+# start on local-filesystems
+start on mounted MOUNTPOINT=/
 stop on runlevel [!2345]
 
 task
 
 script
+  mount <%= @data_part %>_temp_mountpoint
   rsync -aH <%= @data_part %>/ <%= @data_part %>_temp_mountpoint/
   mv <%= @data_part %> <%= @data_part %>_old
   mkdir <%= @data_part %>
