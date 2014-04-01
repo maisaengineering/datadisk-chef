@@ -1,7 +1,7 @@
 datadisk Cookbook
 =================
 
-# This is still alpha code, tested but most definately not guaranteed to work
+NB This is still alpha code, tested but most definitely not guaranteed to work
 
 This cookbook formats and mounts a second disk (datadisk) on the specified mountpoint, copying existing data in the process. Since it's likely that there are files in use this is done during boot.
 
@@ -14,8 +14,6 @@ Requirements
 
 Attributes
 ----------
-
-e.g.
 #### datadisk::default
 <table>
   <tr>
@@ -26,15 +24,9 @@ e.g.
   </tr>
   <tr>
     <td><tt>['datadisk']['datapart']</tt></td>
-    <td>Boolean</td>
+    <td>string</td>
     <td>the target mountpoint e.g. /data or /opt</td>
     <td><tt>/data</tt></td>
-  </tr>
-    <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['datadisk']['doitlive']</tt></td>
