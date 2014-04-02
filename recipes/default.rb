@@ -57,6 +57,12 @@ template "/etc/init/datadisk.conf" do
   	})
 end
 
+execute "enable single user mode" do
+	command "sed -i -e 's/DEFAULT_RUNLEVEL=2/DEFAULT_RUNLEVEL=1/' /etc/init/rc-sysinit.conf"
+	not_if { disk_without_fs.empty? }
+end
+
 execute "reboot" do
         only_if { node['datadisk']['doitlive'] }
 end
+
