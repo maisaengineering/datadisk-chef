@@ -19,7 +19,6 @@ disk_without_fs = disks - disks_with_fs
 # TODO: handle disk without partition
 
 execute "format target disk" do
-        # command "echo #{@@disk_without_fs} > /tmp/target.log"
         command "mkfs -t ext3 /dev/#{disk_without_fs.join}1"
         not_if { disk_without_fs.empty? }
 end
@@ -30,6 +29,7 @@ execute "create temporary mount point" do
 end
 
 #Create datadir if not present
+
 execute "mkdir #{data_part}" do
        not_if { ::File.directory?("#{data_part}") }
 end
@@ -59,7 +59,7 @@ end
 
 execute "enable single user mode" do
 	command "sed -i -e 's/DEFAULT_RUNLEVEL=2/DEFAULT_RUNLEVEL=1/' /etc/init/rc-sysinit.conf"
-	not_if { disk_without_fs.empty? }
+    only_if { ::File.directory?("#{data_part}_temp_mountpoint") }
 end
 
 execute "reboot" do
