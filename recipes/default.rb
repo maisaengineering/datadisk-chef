@@ -34,5 +34,5 @@ mount datadir do
   device target_part
   action [:mount, :enable]
   fstype "ext3"
-  not_if { disk_without_fs.empty? || ::File.directory?("#{datadir}") }
+  not_if { disk_without_fs.empty? }
 end
