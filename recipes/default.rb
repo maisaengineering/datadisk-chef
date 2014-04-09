@@ -7,11 +7,7 @@
 
 # target partition enumeration
 
-data_part = node['datadisk']['datapart']
-
-# nope out if #{data_part} already exists
-
-return if ::File.directory?("#{data_part}")
+datadir = node['datadisk']['datapart']
 
 # target disk enumeration
 
@@ -24,18 +20,19 @@ target_part = "/dev/" + disk_without_fs.join + "1"
 # TODO: handle disk without partition
 
 execute "format target disk" do
-        command "mkfs -t ext3 /dev/#{disk_without_fs.join}1"
-        not_if { disk_without_fs.empty? }
+  command "mkfs -t ext3 /dev/#{disk_without_fs.join}1"
+  not_if { disk_without_fs.empty? || ::File.directory?("#{datadir}") }
 end
 
 #Create datadir
 
-execute "mkdir #{data_part}" do
-       not_if { ::File.directory?("#{data_part}") }
+execute "mkdir #{datadir}" do
+  not_if { ::File.directory?("#{datadir}") }
 end
 
-mount node['datadisk']['datapart'] do
-	device target_part
-	action [:mount, :enable]
-	fstype "ext3"
+mount datadir do
+  device target_part
+  action [:mount, :enable]
+  fstype "ext3"
+  not_if { disk_without_fs.empty? }
 end
