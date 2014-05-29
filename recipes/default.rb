@@ -20,7 +20,7 @@ target_part = "/dev/" + disk_without_fs.join + "1"
 # TODO: handle disk without partition
 
 execute "format target disk" do
-  command "mkfs -t ext3 /dev/#{disk_without_fs.join}1"
+  command "mkfs -t ext4 /dev/#{disk_without_fs.join}1"
   not_if { disk_without_fs.empty? || ::File.directory?("#{datadir}") }
 end
 
@@ -33,6 +33,6 @@ end
 mount datadir do
   device target_part
   action [:mount, :enable]
-  fstype "ext3"
+  fstype "ext4"
   not_if { disk_without_fs.empty? }
 end
